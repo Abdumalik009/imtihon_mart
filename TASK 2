@@ -1,0 +1,49 @@
+INSERT INTO Student (name, birthday, group_id)
+VALUES 
+    ('John', '2013-01-01', 1),
+    ('Chris', '2013-02-02', 1),
+    ('Carl', '2013-03-03', 1),
+    ('Oliver', '2012-01-01', 2),
+    ('James', '2012-02-02', 2),
+    ('Lucas', '2012-03-03', 2),
+    ('Henry', '2012-04-04', 2),
+    ('Jacob', '2011-01-01', 3),
+    ('Logan', '2011-02-02', 3);
+
+
+ INSERT INTO Subject (id, name, grade) VALUES
+(1, 'Art and Music',  1), (2, 'Geography and History',  2),
+(3, 'PE and Math', 3), (4, 'Science and IT',   4),
+(5, 'Subject 1',   5), (6, 'Subject 2',   5);
+
+
+
+INSERT INTO PaymentType (name)
+VALUES 
+    ('DAILY'),
+    ('WEEKLY'),
+    ('MONTHLY');
+
+
+INSERT INTO Payment (type_id, amount, student_id, payment_date)
+VALUES 
+    ((SELECT id FROM PaymentType WHERE name = 'WEEKLY'), 100, (SELECT id FROM Student WHERE name = 'john'), '2022-03-01'),
+    ((SELECT id FROM PaymentType WHERE name = 'MONTHLY'), 500, (SELECT id FROM Student WHERE name = 'Oliver'), '2024-07-05'),
+    ((SELECT id FROM PaymentType WHERE name = 'WEEKLY'), 100, (SELECT id FROM Student WHERE name = 'Henry'), '2024-03-10'),
+    ((SELECT id FROM PaymentType WHERE name = 'DAILY'), 20, (SELECT id FROM Student WHERE name = 'James'), '2021-08-14');
+
+
+
+
+
+
+
+INSERT INTO Mark (student_id, subject_id, mark)
+VALUES 
+    ((SELECT id FROM Student WHERE name = 'Chris'), (SELECT id FROM Subject WHERE name = 'Art'), 8),
+    ((SELECT id FROM Student WHERE name = 'Oliver'), (SELECT id FROM Subject WHERE name = 'History'), 5),
+    ((SELECT id FROM Student WHERE name = 'James'), (SELECT id FROM Subject WHERE name = 'Geography'), 9),
+    ((SELECT id FROM Student WHERE name = 'Jacob'), (SELECT id FROM Subject WHERE name = 'Math'), 4),
+    ((SELECT id FROM Student WHERE name = 'Logan'), (SELECT id FROM Subject WHERE name = 'PE'), 9);
+
+
