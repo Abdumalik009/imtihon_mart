@@ -1,0 +1,47 @@
+CREATE DATABASE University;
+
+
+
+CREATE TABLE Student (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    birthday DATE,
+    group_id INT
+);
+
+
+ CREATE TABLE Subject (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    grade INT
+);
+
+
+
+ CREATE TABLE PaymentType (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+
+
+CREATE TABLE Payment (
+    id BIGSERIAL PRIMARY KEY,
+    type_id BIGINT,
+    amount DECIMAL,
+    student_id BIGINT,
+    payment_date DATE,
+    FOREIGN KEY (type_id) REFERENCES PaymentType(id),
+    FOREIGN KEY (student_id) REFERENCES Student(id)
+);
+
+
+ CREATE TABLE Mark (
+    id BIGSERIAL PRIMARY KEY,
+    student_id BIGINT,
+    subject_id BIGINT,
+    mark INT,
+    FOREIGN KEY (student_id) REFERENCES Student(id),
+    FOREIGN KEY (subject_id) REFERENCES Subject(id)
+);
